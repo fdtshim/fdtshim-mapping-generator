@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 
 #[warn(clippy::pedantic)]
-
 mod dtb_data;
 use crate::dtb_data::*;
 use glob::glob;
