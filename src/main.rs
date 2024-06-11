@@ -91,7 +91,7 @@ fn dump_dts(prefix: &Path) {
         println!("\t\t{} {{", dtb.node_name());
         println!("\t\t\tdtb = {:?};", dtb.path);
         println!("\t\t\tmodel = {:?};", dtb.model);
-        println!("\t\t\tcompatible = {:?};", dtb.compatible());
+        println!("\t\t\tcompatible = {};", dtb.compatibles_source());
         println!("\t\t}};");
     }
     println!("\t}};");

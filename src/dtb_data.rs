@@ -46,8 +46,19 @@ impl DtbData {
     }
 
     /// Returns the main compatible from the compatibles list.
+    /// This is used to drop duplicated compatible devices.
     pub fn compatible(&self) -> &String {
         self.compatibles.first().unwrap()
+    }
+
+    /// Format the compatibles list as a valid dts value.
+    pub fn compatibles_source(&self) -> String {
+        self.compatibles
+            .iter()
+            // Borrow the pretty-printed format of a string.
+            .map(|part| format!("{part:?}"))
+            .collect::<Vec<String>>()
+            .join(", ")
     }
 
     /// Produces a valid node name from the file path.
