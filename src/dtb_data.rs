@@ -7,9 +7,7 @@ use std::path::Path;
 use std::path::PathBuf;
 
 /// Simplified overview of a kernel-flavoured dtb file.
-#[derive(Debug)]
-#[derive(Eq)]
-#[derive(Ord)]
+#[derive(Debug, Eq, Ord)]
 pub struct DtbData {
     /// Path of the dtb filename, relative to the kernel-flavoured dtbs folder.
     /// This is the path to the file that will be loaded by fdtshim.
@@ -34,9 +32,17 @@ impl DtbData {
         let dtb = Fdt::new(data.as_slice()).unwrap();
         let root = dtb.root().unwrap();
         let model = root.model().to_string();
-        let compatibles: Vec<String> = root.compatible().all().map(std::string::ToString::to_string).collect();
+        let compatibles: Vec<String> = root
+            .compatible()
+            .all()
+            .map(std::string::ToString::to_string)
+            .collect();
 
-        Self { path, model, compatibles }
+        Self {
+            path,
+            model,
+            compatibles,
+        }
     }
 
     /// Returns the main compatible from the compatibles list.
@@ -45,14 +51,17 @@ impl DtbData {
     }
 
     /// Produces a valid node name from the file path.
-    /// 
+    ///
     ///  - The extension is removed.
     ///  - The first slash is replaced with an `@`.
     ///  - Any further slashes are replaced with `_`.
     ///
     /// NOTE: The node names should not be relied on. It is an opaque arbitrary unique identifier.
     pub fn node_name(&self) -> String {
-        self.path.replacen('/', "@", 1).replace('/', "_").replacen(".dtb", "", 1)
+        self.path
+            .replacen('/', "@", 1)
+            .replace('/', "_")
+            .replacen(".dtb", "", 1)
     }
 }
 
