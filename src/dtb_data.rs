@@ -8,6 +8,8 @@ use std::path::PathBuf;
 
 /// Simplified overview of a kernel-flavoured dtb file.
 #[derive(Debug)]
+#[derive(Eq)]
+#[derive(Ord)]
 pub struct DtbData {
     /// Path of the dtb filename, relative to the kernel-flavoured dtbs folder.
     /// This is the path to the file that will be loaded by fdtshim.
@@ -59,16 +61,9 @@ impl PartialEq for DtbData {
         self.path == other.path
     }
 }
-impl Eq for DtbData {}
 
 impl PartialOrd for DtbData {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         Some(self.cmp(other))
-    }
-}
-
-impl Ord for DtbData {
-    fn cmp(&self, other: &Self) -> Ordering {
-        self.path.cmp(&other.path)
     }
 }
