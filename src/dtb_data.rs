@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 use flat_device_tree::Fdt;
 use std::cmp::Ordering;
 use std::fs;
