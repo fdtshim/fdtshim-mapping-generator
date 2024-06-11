@@ -30,13 +30,9 @@ impl DtbData {
         let dtb = Fdt::new(data.as_slice()).unwrap();
         let root = dtb.root().unwrap();
         let model = root.model().to_string();
-        let compatibles: Vec<String> = root.compatible().all().map(|s| s.to_string()).collect();
+        let compatibles: Vec<String> = root.compatible().all().map(std::string::ToString::to_string).collect();
 
-        Self {
-            path,
-            compatibles,
-            model,
-        }
+        Self { path, model, compatibles }
     }
 
     /// Returns the main compatible from the compatibles list.
