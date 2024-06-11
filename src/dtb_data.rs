@@ -9,9 +9,11 @@ use std::path::PathBuf;
 /// Simplified overview of a kernel-flavoured dtb file.
 #[derive(Debug)]
 pub struct DtbData {
-    /// Relative path of the dtb filename.
+    /// Path of the dtb filename, relative to the kernel-flavoured dtbs folder.
+    /// This is the path to the file that will be loaded by fdtshim.
     pub path: String,
     /// The model string.
+    /// Saved to the produced dts.
     pub model: String,
     /// Components of the compatible field.
     pub compatibles: Vec<String>,
