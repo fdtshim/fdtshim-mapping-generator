@@ -1,13 +1,12 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 
 use flat_device_tree::Fdt;
-use std::cmp::Ordering;
 use std::fs;
 use std::path::Path;
 use std::path::PathBuf;
 
 /// Simplified overview of a kernel-flavoured dtb file.
-#[derive(Debug, Eq, Ord)]
+#[derive(Debug, Eq, Ord, PartialOrd)]
 pub struct DtbData {
     /// Path of the dtb filename, relative to the kernel-flavoured dtbs folder.
     /// This is the path to the file that will be loaded by fdtshim.
@@ -79,11 +78,5 @@ impl DtbData {
 impl PartialEq for DtbData {
     fn eq(&self, other: &Self) -> bool {
         self.path == other.path
-    }
-}
-
-impl PartialOrd for DtbData {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
     }
 }
