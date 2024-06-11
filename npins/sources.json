@@ -1,0 +1,23 @@
+{
+  "pins": {
+    "fenix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "fenix"
+      },
+      "branch": "main",
+      "revision": "08ea8011dd25421c104a5f44d16a713a27d93fde",
+      "url": "https://github.com/nix-community/fenix/archive/08ea8011dd25421c104a5f44d16a713a27d93fde.tar.gz",
+      "hash": "08il11h1zh2nmkbbjb6bgcrr8pcqb4v1880d5c35a2k1pb08mq0q"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-24.11pre630835.bfb7a882678e/nixexprs.tar.xz",
+      "hash": "04qn48v4vjpxsk00x407v558p3f1x8blwjppk2sswzbjhyn2vgxw"
+    }
+  },
+  "version": 3
+}
